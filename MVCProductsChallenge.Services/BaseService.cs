@@ -17,7 +17,7 @@ namespace MVCProductsChallenge.Services
         void Update(T oldEntity, T newEntity);
     }
 
-    public class BaseService<T> : IBaseService<T> where T : BaseEntity
+    public abstract class BaseService<T> : IBaseService<T> where T : BaseEntity
     {
         private readonly ProductsContext _dbContext;
 
@@ -26,29 +26,29 @@ namespace MVCProductsChallenge.Services
             _dbContext = new ProductsContext();
         }
 
-        public void Create(T entity)
+        public virtual void Create(T entity)
         {
             _dbContext.Set<T>().Add(entity);
             _dbContext.SaveChanges();
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
             _dbContext.SaveChanges();
         }
 
-        public T Get(int id)
+        public virtual T Get(int id)
         {
             return _dbContext.Set<T>().Find(id);
         }
 
-        public IQueryable<T> List()
+        public virtual IQueryable<T> List()
         {
             return _dbContext.Set<T>().AsQueryable();
         }
 
-        public void Update(T oldEntity, T newEntity)
+        public virtual void Update(T oldEntity, T newEntity)
         {
             _dbContext.Entry(oldEntity).CurrentValues.SetValues(newEntity);
             _dbContext.SaveChanges();
