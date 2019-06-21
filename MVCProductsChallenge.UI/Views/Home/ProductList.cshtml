@@ -1,0 +1,20 @@
+﻿@model MVCProductsChallenge.Model.Entities.Product
+@{
+    string updateId = $"update{Model.Id.ToString()}",
+        deleteId = $"delete{Model.Id.ToString()}";
+}
+
+<tr>
+    <td>@Model.Identifier</td>
+    <td>@Model.Description</td>
+    <td>@Model.ProductType.ProductTypeName</td>
+    <td>@Model.ProductStatus.ToString()</td>
+    <td>
+        <button class="btn btn-warning" id="@updateId">
+            Update
+        </button>
+        <button class="btn btn-danger" id="@deleteId">
+            Delete
+        </button>
+    </td>
+</tr>
