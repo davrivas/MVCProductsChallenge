@@ -215,6 +215,16 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVCProductsChallenge.Model\MVCProductsChallenge.Model.csproj">
+      <Project>{c00d6e5e-32a5-440b-9953-1396019cc7f0}</Project>
+      <Name>MVCProductsChallenge.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCProductsChallenge.Services\MVCProductsChallenge.Services.csproj">
+      <Project>{b09f4240-d4b5-4c3d-a6b9-6987e72cc9a9}</Project>
+      <Name>MVCProductsChallenge.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
