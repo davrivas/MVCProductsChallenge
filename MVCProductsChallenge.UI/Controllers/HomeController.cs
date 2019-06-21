@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MVCProductsChallenge.Services;
+using MVCProductsChallenge.UI.ViewModels.HomeViewModels;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,23 +11,27 @@ namespace MVCProductsChallenge.UI.Controllers
 {
     public class HomeController : BaseController
     {
+        private readonly IProductService _productService;
+
+        public HomeController()
+        {
+            _productService = new ProductService();
+        }
+
         public ActionResult Index()
         {
-            return View();
-        }
+            var products = _productService
+                .List()
+                .Include(x => x.ProductType)
+                .ToList();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            var viewModel = new IndexViewModel
+            {
+                Title = "Products",
+                Products = products
+            };
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(viewModel);
         }
     }
 }
