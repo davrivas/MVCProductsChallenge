@@ -19,7 +19,7 @@
         <tbody>
             @foreach (var product in Model.Products)
             {
-                @Html.Partial("ProductList", product)
+                @Html.Partial("ProductRow", product)
             }
         </tbody>
     </table>

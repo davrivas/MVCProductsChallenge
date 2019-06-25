@@ -13,5 +13,10 @@ namespace MVCProductsChallenge.Services
 
     public sealed class ProductService : BaseService<Product>, IProductService
     {
+        public override void Create(Product entity)
+        {
+            entity.CreationDate = DateTime.Now;
+            base.Create(entity);
+        }
     }
 }

@@ -9,9 +9,5 @@ namespace MVCProductsChallenge.UI.ViewModels.HomeViewModels
     public sealed class IndexViewModel : BaseViewModel
     {
         public IList<Product> Products { get; set; }
-
-        public IndexViewModel()
-        {
-        }
     }
 }
