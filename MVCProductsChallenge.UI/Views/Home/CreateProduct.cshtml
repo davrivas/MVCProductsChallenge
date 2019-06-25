@@ -1,0 +1,37 @@
+﻿@using MVCProductsChallenge.UI.Extensions
+@model MVCProductsChallenge.UI.ViewModels.HomeViewModels.IndexViewModel
+
+<div class="modal" id="createProductModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        @using (var form = Html.BeginForm("CreateProduct", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NewProduct.Description)
+                        @Html.TextBoxFor(model => model.NewProduct.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.NewProduct.Description)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NewProduct.ProductType)
+                        @Html.GetProductTypes(Model.ProductTypes, null)
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary"  value="Save changes" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

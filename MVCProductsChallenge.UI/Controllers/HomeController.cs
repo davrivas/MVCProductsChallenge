@@ -1,4 +1,5 @@
-﻿using MVCProductsChallenge.Services;
+﻿using MVCProductsChallenge.Model.Entities;
+using MVCProductsChallenge.Services;
 using MVCProductsChallenge.UI.ViewModels.HomeViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace MVCProductsChallenge.UI.Controllers
     public class HomeController : BaseController
     {
         private readonly IProductService _productService;
+        private readonly IProductTypeService _productTypeService;
 
         public HomeController()
         {
             _productService = new ProductService();
+            _productTypeService = new ProductTypeService();
         }
 
         public ActionResult Index()
@@ -24,14 +27,31 @@ namespace MVCProductsChallenge.UI.Controllers
                 .List()
                 .Include(x => x.ProductType)
                 .ToList();
+            var productTypes = _productTypeService
+                .List()
+                .OrderBy(x => x.ProductTypeName)
+                .ToList();
 
             var viewModel = new IndexViewModel
             {
                 Title = "Products",
-                Products = products
+                NewProduct = new Product(),
+                Products = products,
+                ProductTypes = productTypes
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult CreateProduct([Bind(Include = "NewProduct.Description,NewProduct.Price")] IndexViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
