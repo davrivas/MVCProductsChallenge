@@ -3,14 +3,19 @@
 <div class="row mb-3">
     <div class="col-md-6">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createProductModal">
-            <span class="fa fa-plus"></span>&nbsp;&nbsp;Add product
+            <span class="fa fa-plus"></span>
         </button>
     </div>
     <div class="col-md-6">
-        @*@using (var form = new object())
-        {
-
-        }*@
+        <div class="row">
+            @Html.Label("Identifier")
+            @Html.TextBox("identifier", null, new { @class = "form-control" })
+            @Html.Label("Description")
+            @Html.TextBox("description", null, new { @class = "form-control" })
+            <button type="button" id="search" >
+                <span class="fa fa-glass"></span>
+            </button>
+        </div>
     </div>
 </div>
 
