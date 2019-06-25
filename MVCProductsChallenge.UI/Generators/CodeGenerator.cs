@@ -7,7 +7,7 @@ namespace MVCProductsChallenge.UI.Generators
 {
     public static class CodeGenerator
     {
-        private const string CODE_CHARACTERS = "qwertyuioplkjhgfdsamnbvcxz";
+        private const string CODE_CHARACTERS = "abcdefghijklmnopqrstuvwxyz1234567890";
         private static readonly int _charactersLength = CODE_CHARACTERS.Length;
         private static readonly Random random = new Random();
 
