@@ -2,18 +2,20 @@
 
 <div class="row mb-3">
     <div class="col-md-6">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createProductModal">
-            <span class="fa fa-plus"></span>
+        <button type="button" class="btn btn-primary" onclick="window.location = '@Url.Action("CreateProduct", "Home")'">
+            Add product <span class="fa fa-plus"></span>
         </button>
     </div>
     <div class="col-md-6">
         <div class="row">
-            @Html.Label("Identifier")
-            @Html.TextBox("identifier", null, new { @class = "form-control" })
-            @Html.Label("Description")
-            @Html.TextBox("description", null, new { @class = "form-control" })
-            <button type="button" id="search" >
-                <span class="fa fa-glass"></span>
+            <div class="form-group">
+                @Html.TextBox("identifier", null, new { @class = "form-control", placeholder = "Identifier" })
+            </div>
+            <div class="form-group">
+                @Html.TextBox("description", null, new { @class = "form-control", placeholder = "Description" })
+            </div>
+            <button type="button" class="btn btn-primary" id="searchProduct">
+                Search <span class="fa fa-search"></span>
             </button>
         </div>
     </div>
@@ -43,5 +45,3 @@ else
 {
     <p class="text-center">There are no products yet</p>
 }
-
-@Html.Partial("CreateProduct", Model)

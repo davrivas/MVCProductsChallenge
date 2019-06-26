@@ -1,11 +1,8 @@
 ﻿using MVCProductsChallenge.Model.Entities;
 using MVCProductsChallenge.Services;
 using MVCProductsChallenge.UI.ViewModels.HomeViewModels;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MVCProductsChallenge.UI.Controllers
@@ -13,12 +10,10 @@ namespace MVCProductsChallenge.UI.Controllers
     public class HomeController : BaseController
     {
         private readonly IProductService _productService;
-        private readonly IProductTypeService _productTypeService;
 
         public HomeController()
         {
             _productService = new ProductService();
-            _productTypeService = new ProductTypeService();
         }
 
         public ActionResult Index()
@@ -27,31 +22,34 @@ namespace MVCProductsChallenge.UI.Controllers
                 .List()
                 .Include(x => x.ProductType)
                 .ToList();
-            var productTypes = _productTypeService
-                .List()
-                .OrderBy(x => x.ProductTypeName)
-                .ToList();
+
+            ViewBag.Title = "Products";
 
             var viewModel = new IndexViewModel
             {
-                Title = "Products",
-                NewProduct = new Product(),
-                Products = products,
-                ProductTypes = productTypes
+                Products = products
             };
 
             return View(viewModel);
         }
 
+        public ActionResult CreateProduct()
+        {
+            ViewBag.Title = "Create product";
+
+            return View(new Product());
+        }
+
         [HttpPost]
-        public ActionResult CreateProduct([Bind(Include = "NewProduct.Description,NewProduct.Price")] IndexViewModel model)
+        public ActionResult SubmitCreateProduct([Bind(Include = "Description,Price,ProductTypeId")] Product product)
         {
             if (ModelState.IsValid)
             {
-                
+                _productService.Create(product);
+                return RedirectToAction("Index");
             }
 
-            return RedirectToAction("Index");
+            return View("CreateProduct", product);
         }
     }
 }

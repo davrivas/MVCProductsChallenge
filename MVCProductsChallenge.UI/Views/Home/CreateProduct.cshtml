@@ -1,37 +1,27 @@
-﻿@using MVCProductsChallenge.UI.Extensions
-@model MVCProductsChallenge.UI.ViewModels.HomeViewModels.IndexViewModel
+﻿@using MVCProductsChallenge.UI.Helpers
+@model MVCProductsChallenge.Model.Entities.Product
 
-<div class="modal" id="createProductModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        @using (var form = Html.BeginForm("CreateProduct", "Home", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
+@using (var form = Html.BeginForm("SubmitCreateProduct", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Create product</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.NewProduct.Description)
-                        @Html.TextBoxFor(model => model.NewProduct.Description, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.NewProduct.Description)
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.NewProduct.ProductType)
-                        @Html.GetProductTypes(Model.ProductTypes, null)
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary"  value="Save changes" />
-                </div>
-            </div>
-        }
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Description)
     </div>
-</div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price)
+        @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Price)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductTypeId, "Product type")
+        @Html.CustomDropdownListFor(model => model.ProductTypeId, ListHelpers.GetProductTypes(), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ProductTypeId)
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Save changes" />
+    </div>
+}
