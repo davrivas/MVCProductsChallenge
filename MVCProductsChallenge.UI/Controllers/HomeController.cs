@@ -41,11 +41,33 @@ namespace MVCProductsChallenge.UI.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SubmitCreateProduct([Bind(Include = "Description,Price,ProductTypeId")] Product product)
         {
             if (ModelState.IsValid)
             {
                 _productService.Create(product);
+                return RedirectToAction("Index");
+            }
+
+            return View("CreateProduct", product);
+        }
+
+        public ActionResult EditProduct(int productId)
+        {
+            ViewBag.Title = "Edit product";
+
+            var selectedProduct = _productService.Get(productId);
+            return View("EditProduct", selectedProduct);
+        }
+
+        [HttpPost]
+        public ActionResult SubmitEditProduct([Bind(Include = "Description,Price,ProductTypeId,ProductStatus")] Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                var oldProduct = _productService.Get(product.Id);
+                _productService.Update(oldProduct, product);
                 return RedirectToAction("Index");
             }
 

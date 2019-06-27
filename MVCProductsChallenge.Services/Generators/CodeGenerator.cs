@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace MVCProductsChallenge.UI.Generators
+namespace MVCProductsChallenge.Services.Generators
 {
     public static class CodeGenerator
     {

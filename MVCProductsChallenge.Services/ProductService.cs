@@ -1,5 +1,6 @@
 ﻿using MVCProductsChallenge.Model.Entities;
 using MVCProductsChallenge.Model.Enum;
+using MVCProductsChallenge.Services.Generators;
 using System;
 
 namespace MVCProductsChallenge.Services
@@ -12,6 +13,7 @@ namespace MVCProductsChallenge.Services
     {
         public override void Create(Product entity)
         {
+            entity.Identifier = CodeGenerator.GenerateCode();
             entity.CreationDate = DateTime.Now;
             entity.ProductStatus = ProductStatus.Active;
             base.Create(entity);

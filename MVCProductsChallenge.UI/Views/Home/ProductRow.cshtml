@@ -1,7 +1,7 @@
 ﻿@model MVCProductsChallenge.Model.Entities.Product
 @{
-    string updateId = $"update{Model.Id.ToString()}",
-        deleteId = $"delete{Model.Id.ToString()}";
+    int id = Model.Id;
+    string editUrl = @Url.Action("EditProduct", "Home") + "?productId=" + id.ToString();
 }
 
 <tr>
@@ -10,10 +10,10 @@
     <td>@Model.ProductType.ProductTypeName</td>
     <td>@Model.ProductStatus.ToString()</td>
     <td>
-        <button class="btn btn-warning" id="@updateId">
+        <button class="btn btn-warning update" data-url="@editUrl">
             <span class="fa fa-pencil"></span>
         </button>
-        <button class="btn btn-danger" id="@deleteId">
+        <button class="btn btn-danger delete">
             <span class="fa fa-trash"></span>
         </button>
     </td>

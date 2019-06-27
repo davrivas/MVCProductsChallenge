@@ -1,29 +1,29 @@
 ﻿@model MVCProductsChallenge.UI.ViewModels.HomeViewModels.IndexViewModel
 
-<div class="row mb-3">
+<div class="row mb-5">
     <div class="col-md-6">
-        <button type="button" class="btn btn-primary" onclick="window.location = '@Url.Action("CreateProduct", "Home")'">
+        <button type="button" id="addProductButton" class="btn btn-primary" data-url="@Url.Action("CreateProduct", "Home")">
             Add product <span class="fa fa-plus"></span>
         </button>
     </div>
     <div class="col-md-6">
-        <div class="row">
-            <div class="form-group">
-                @Html.TextBox("identifier", null, new { @class = "form-control", placeholder = "Identifier" })
-            </div>
-            <div class="form-group">
-                @Html.TextBox("description", null, new { @class = "form-control", placeholder = "Description" })
-            </div>
-            <button type="button" class="btn btn-primary" id="searchProduct">
-                Search <span class="fa fa-search"></span>
-            </button>
+        <h2>Search for products</h2>
+
+        <div class="form-group">
+            @Html.TextBox("identifier", null, new { id = "identifier", @class = "form-control", placeholder = "Identifier" })
         </div>
+        <div class="form-group">
+            @Html.TextBox("description", null, new { id = "description", @class = "form-control", placeholder = "Description" })
+        </div>
+        <button type="button" class="btn btn-primary" id="searchProduct" data-url="">
+            Search <span class="fa fa-search"></span>
+        </button>
     </div>
 </div>
 
 @if (Model.Products.Count > 0)
 {
-    <table class="table table-striped table-responsive">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Identifier</th>
@@ -44,4 +44,8 @@
 else
 {
     <p class="text-center">There are no products yet</p>
+}
+
+@section scripts{
+    <script src="~/Scripts/app/home/index.js"></script>
 }

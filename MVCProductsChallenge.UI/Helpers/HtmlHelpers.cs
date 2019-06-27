@@ -60,7 +60,7 @@ namespace MVCProductsChallenge.UI.Helpers
             {
                 options = options.Append(
                     "<option" +
-                    (!string.IsNullOrWhiteSpace(item.Value) ? " value=''" : " value='" + item.Value + "'") +
+                    (string.IsNullOrWhiteSpace(item.Value) ? " value=''" : " value='" + item.Value + "'") +
                     (item.Selected ? " selected='selected'" : string.Empty) +
                     ">" + item.Text + "</option>");
             }
