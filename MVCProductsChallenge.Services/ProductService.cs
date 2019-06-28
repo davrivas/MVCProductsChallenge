@@ -1,5 +1,5 @@
 ﻿using MVCProductsChallenge.Model.Entities;
-using MVCProductsChallenge.Model.Enum;
+using MVCProductsChallenge.Model.Enums;
 using MVCProductsChallenge.Services.Generators;
 using System;
 
@@ -17,14 +17,6 @@ namespace MVCProductsChallenge.Services
             entity.CreationDate = DateTime.Now;
             entity.ProductStatus = ProductStatus.Active;
             base.Create(entity);
-        }
-
-        public override void Update(Product oldEntity, Product newEntity)
-        {
-            newEntity.Id = oldEntity.Id;
-            newEntity.Identifier = oldEntity.Identifier;
-            newEntity.CreationDate = oldEntity.CreationDate;
-            base.Update(oldEntity, newEntity);
         }
     }
 }

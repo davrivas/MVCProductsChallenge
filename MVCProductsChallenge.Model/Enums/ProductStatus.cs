@@ -1,4 +1,4 @@
-﻿namespace MVCProductsChallenge.Model.Enum
+﻿namespace MVCProductsChallenge.Model.Enums
 {
     public enum ProductStatus
     {

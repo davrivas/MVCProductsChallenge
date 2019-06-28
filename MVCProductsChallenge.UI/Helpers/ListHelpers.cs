@@ -1,5 +1,4 @@
-﻿using MVCProductsChallenge.Model.Entities;
-using MVCProductsChallenge.Model.Enum;
+﻿using MVCProductsChallenge.Model.Enums;
 using MVCProductsChallenge.Services;
 using System;
 using System.Collections.Generic;

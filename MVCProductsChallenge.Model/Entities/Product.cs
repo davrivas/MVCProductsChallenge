@@ -1,4 +1,4 @@
-﻿using MVCProductsChallenge.Model.Enum;
+﻿using MVCProductsChallenge.Model.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 

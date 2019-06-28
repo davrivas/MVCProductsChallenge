@@ -1,6 +1,5 @@
 ﻿using MVCProductsChallenge.Model.Entities;
 using MVCProductsChallenge.Services;
-using MVCProductsChallenge.UI.ViewModels.HomeViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -18,19 +17,14 @@ namespace MVCProductsChallenge.UI.Controllers
 
         public ActionResult Index()
         {
-            var products = _productService
+            ViewBag.Products = _productService
                 .List()
                 .Include(x => x.ProductType)
                 .ToList();
 
             ViewBag.Title = "Products";
 
-            var viewModel = new IndexViewModel
-            {
-                Products = products
-            };
-
-            return View(viewModel);
+            return View();
         }
 
         public ActionResult CreateProduct()
@@ -63,11 +57,11 @@ namespace MVCProductsChallenge.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SubmitEditProduct(int productId, [Bind(Include = "Description,Price,ProductTypeId,ProductStatus")] Product product)
+        public ActionResult SubmitEditProduct([Bind(Include = "Id,Identifier,CreationDate,Description,Price,ProductTypeId,ProductStatus")] Product product)
         {
             if (ModelState.IsValid)
             {
-                var oldProduct = _productService.Get(productId);
+                var oldProduct = _productService.Get(product.Id);
                 _productService.Update(oldProduct, product);
                 return RedirectToAction("Index");
             }

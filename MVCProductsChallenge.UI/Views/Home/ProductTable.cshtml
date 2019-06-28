@@ -1,0 +1,19 @@
+﻿@model IList<MVCProductsChallenge.Model.Entities.Product>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Description</th>
+            <th>Product type</th>
+            <th>Product status</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            @Html.Partial("ProductRow", product)
+        }
+    </tbody>
+</table>
