@@ -10,11 +10,8 @@
     <td>@Model.ProductType.ProductTypeName</td>
     <td>@Model.ProductStatus.ToString()</td>
     <td>
-        <button class="btn btn-warning update" data-url="@editUrl">
+        <button type="button" class="btn btn-warning update" title="Edit" data-url="@editUrl">
             <span class="fa fa-pencil"></span>
-        </button>
-        <button class="btn btn-danger delete">
-            <span class="fa fa-trash"></span>
         </button>
     </td>
 </tr>

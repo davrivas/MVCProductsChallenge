@@ -18,5 +18,13 @@ namespace MVCProductsChallenge.Services
             entity.ProductStatus = ProductStatus.Active;
             base.Create(entity);
         }
+
+        public override void Update(Product oldEntity, Product newEntity)
+        {
+            newEntity.Id = oldEntity.Id;
+            newEntity.Identifier = oldEntity.Identifier;
+            newEntity.CreationDate = oldEntity.CreationDate;
+            base.Update(oldEntity, newEntity);
+        }
     }
 }

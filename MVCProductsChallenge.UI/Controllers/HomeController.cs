@@ -62,11 +62,12 @@ namespace MVCProductsChallenge.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult SubmitEditProduct([Bind(Include = "Description,Price,ProductTypeId,ProductStatus")] Product product)
+        [ValidateAntiForgeryToken]
+        public ActionResult SubmitEditProduct(int productId, [Bind(Include = "Description,Price,ProductTypeId,ProductStatus")] Product product)
         {
             if (ModelState.IsValid)
             {
-                var oldProduct = _productService.Get(product.Id);
+                var oldProduct = _productService.Get(productId);
                 _productService.Update(oldProduct, product);
                 return RedirectToAction("Index");
             }

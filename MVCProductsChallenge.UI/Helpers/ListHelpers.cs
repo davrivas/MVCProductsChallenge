@@ -12,9 +12,7 @@ namespace MVCProductsChallenge.UI.Helpers
     {
         public static IList<SelectListItem> GetProductTypes(int productTypeId = 0)
         {
-            var productTypeService = new ProductTypeService();
-
-            var productTypes = productTypeService
+            var productTypes = new ProductTypeService()
                 .List()
                 .OrderBy(x => x.ProductTypeName)
                 .Select(x => new SelectListItem
@@ -27,7 +25,7 @@ namespace MVCProductsChallenge.UI.Helpers
             return productTypes;
         }
 
-        public static IList<SelectListItem> GetProductStatuses(ProductStatus productStatus)
+        public static IList<SelectListItem> GetProductStatuses(int productStatus)
         {
             var values = Enum.GetValues(typeof(ProductStatus));
 
@@ -40,7 +38,7 @@ namespace MVCProductsChallenge.UI.Helpers
                 {
                     Text = value.ToString(),
                     Value = i.ToString(),
-                    Selected = productStatus.ToString() == value.ToString()
+                    Selected = productStatus == i
                 };
                 productStatuses.Add(item);
             }

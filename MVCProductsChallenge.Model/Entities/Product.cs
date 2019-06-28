@@ -12,6 +12,7 @@ namespace MVCProductsChallenge.Model.Entities
         public int ProductTypeId { get; set; }
         public ProductType ProductType { get; set; }
         [Required]
+        [Range(0, int.MaxValue)]
         public decimal Price { get; set; }
         public DateTime CreationDate { get; set; }
         [Required]
