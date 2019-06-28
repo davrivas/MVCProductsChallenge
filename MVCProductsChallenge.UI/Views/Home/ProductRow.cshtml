@@ -1,7 +1,6 @@
 ﻿@model MVCProductsChallenge.Model.Entities.Product
 @{
-    int id = Model.Id;
-    string editUrl = @Url.Action("EditProduct", "Home") + "?productId=" + id.ToString();
+    string editUrl = @Url.Action("EditProduct", "Home") + "?productId=" + Model.Id.ToString();
 }
 
 <tr>

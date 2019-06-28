@@ -27,6 +27,24 @@ namespace MVCProductsChallenge.UI.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult GetProducts(string identifier, string description)
+        {
+            if (string.IsNullOrWhiteSpace(identifier))
+                identifier = null;
+
+            if (string.IsNullOrWhiteSpace(description))
+                description = null;
+
+            var products = _productService
+                .List()
+                .Include(x => x.ProductType)
+                .Where(x => (identifier == null || x.Identifier == identifier) && (description == null || x.Description.ToLower().Contains(description.ToLower())))
+                .ToList();
+
+            return PartialView("ProductsTable", products);
+        }
+
         public ActionResult CreateProduct()
         {
             ViewBag.Title = "Create product";

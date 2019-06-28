@@ -228,7 +228,7 @@
     <Content Include="Views\Home\ProductRow.cshtml" />
     <Content Include="Views\Home\CreateProduct.cshtml" />
     <Content Include="Views\Home\EditProduct.cshtml" />
-    <Content Include="Views\Home\ProductTable.cshtml" />
+    <Content Include="Views\Home\ProductsTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

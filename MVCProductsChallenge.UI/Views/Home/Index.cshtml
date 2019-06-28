@@ -13,20 +13,13 @@
         <div class="form-group">
             @Html.TextBox("description", null, new { id = "description", @class = "form-control", placeholder = "Description" })
         </div>
-        <button type="button" class="btn btn-primary" id="searchProduct" data-url="">
+        <button type="submit" class="btn btn-primary" id="searchButton" data-url="@Url.Action("GetProducts", "Home")">
             Search <span class="fa fa-search"></span>
         </button>
     </div>
 </div>
 
-@if (ViewBag.Products.Count > 0)
-{
-    @Html.Partial("ProductTable", (IList<Product>)ViewBag.Products)
-}
-else
-{
-    <p class="text-center">There are no products yet</p>
-}
+@Html.Partial("ProductsTable", (IList<Product>)ViewBag.Products)
 
 @section scripts{
     <script src="~/Scripts/app/home/index.js"></script>
