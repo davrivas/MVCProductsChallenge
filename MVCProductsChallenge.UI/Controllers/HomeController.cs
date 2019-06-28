@@ -84,7 +84,7 @@ namespace MVCProductsChallenge.UI.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View("CreateProduct", product);
+            return View("EditProduct", product);
         }
     }
 }

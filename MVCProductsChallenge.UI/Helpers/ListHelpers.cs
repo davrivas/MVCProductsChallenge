@@ -24,22 +24,31 @@ namespace MVCProductsChallenge.UI.Helpers
             return productTypes;
         }
 
-        public static IList<SelectListItem> GetProductStatuses(int productStatus)
+        public static IList<SelectListItem> GetProductStatuses(ProductStatus productStatus)
         {
-            var values = Enum.GetValues(typeof(ProductStatus));
+            var active = new SelectListItem
+            {
+                Text = ProductStatus.Active.ToString(),
+                Value = Convert.ToInt32(ProductStatus.Active).ToString(),
+                Selected = productStatus.ToString() == ProductStatus.Active.ToString()
+            };
+
+            var inactive = new SelectListItem
+            {
+                Text = ProductStatus.Inactive.ToString(),
+                Value = Convert.ToInt32(ProductStatus.Inactive).ToString(),
+                Selected = productStatus.ToString() == ProductStatus.Inactive.ToString()
+            };
 
             var productStatuses = new List<SelectListItem>();
 
-            for (int i = 0; i < values.Length; i++)
+            if (productStatus.ToString() == ProductStatus.Inactive.ToString())
             {
-                var value = values.GetValue(i);
-                var item = new SelectListItem
-                {
-                    Text = value.ToString(),
-                    Value = i.ToString(),
-                    Selected = productStatus == i
-                };
-                productStatuses.Add(item);
+
+            }
+            else
+            {
+
             }
 
             return productStatuses;

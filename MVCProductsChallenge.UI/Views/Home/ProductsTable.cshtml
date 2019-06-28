@@ -1,4 +1,4 @@
-﻿@model IList<MVCProductsChallenge.Model.Entities.Product>
+﻿@model IList<Product>
 
 <table id="productsTable" class="table table-striped">
     <thead>
@@ -11,9 +11,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var product in Model)
+        @if (Model.Count > 0)
         {
-            @Html.Partial("ProductRow", product)
+            foreach (var product in Model)
+            {
+                @Html.Partial("ProductRow", product)
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">
+                    <em>There are no products to show</em>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
