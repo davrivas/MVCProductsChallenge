@@ -149,9 +149,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\app\home\edit-product.js" />
-    <Content Include="Scripts\app\home\create-product.js" />
-    <Content Include="Scripts\app\home\index.js" />
+    <Content Include="Scripts\app\go-back.js" />
+    <Content Include="Scripts\app\product-type\index.js" />
+    <Content Include="Scripts\app\product\index.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -229,7 +229,11 @@
     <Content Include="Views\Product\CreateProduct.cshtml" />
     <Content Include="Views\Product\EditProduct.cshtml" />
     <Content Include="Views\Product\ProductsTable.cshtml" />
+    <Content Include="Views\ProductType\CreateProductType.cshtml" />
+    <Content Include="Views\ProductType\EditProductType.cshtml" />
     <Content Include="Views\ProductType\Index.cshtml" />
+    <Content Include="Views\ProductType\ProductTypeRow.cshtml" />
+    <Content Include="Views\ProductType\ProductTypesTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

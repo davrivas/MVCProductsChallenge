@@ -1,0 +1,13 @@
+﻿@model ProductType
+@{
+    string editUrl = @Url.Action("EditProductType", "ProductType") + "?productTypeId=" + Model.Id.ToString();
+}
+
+<tr>
+    <th scope="row">@Model.Name</th>
+    <td>
+        <button type="button" class="btn btn-warning update" title="Edit" data-url="@editUrl">
+            <span class="fa fa-pencil"></span>
+        </button>
+    </td>
+</tr>

@@ -16,7 +16,7 @@ namespace MVCProductsChallenge.UI.Helpers
                 new SelectListItem
                 {
                     Text = "Select product type",
-                    Value = "0",
+                    Value = "",
                     Selected = productTypeId == 0
                 }
             };

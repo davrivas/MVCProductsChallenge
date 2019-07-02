@@ -1,0 +1,27 @@
+﻿@model ProductType
+
+<div class="row mb-3">
+    <button type="button" id="backButton" class="btn btn-primary" data-url="@Url.Action("Index", "ProductType")">
+        Go back
+    </button>
+</div>
+
+@using (var form = Html.BeginForm("SubmitEditProductType", "ProductType", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-warning" value="Update changes" />
+    </div>
+}
+
+@section scripts{
+    <script src="~/Scripts/app/go-back.js"></script>
+}
