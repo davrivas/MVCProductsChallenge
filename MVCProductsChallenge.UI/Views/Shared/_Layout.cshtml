@@ -17,7 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    @Html.ActionLink("Products", "Index", "Home", null, new { @class = "nav-link" })
+                    @Html.ActionLink("Products", "Index", "Product", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Product types", "Index", "ProductType", null, new { @class = "nav-link" })
                 </li>
             </ul>
         </div>
@@ -26,7 +29,9 @@
         <h1>@ViewBag.Title</h1>
 
         @RenderBody()
+
         <hr />
+
         <footer>
             <p>@DateTime.Now.Year - MVC Products Challenge</p>
         </footer>

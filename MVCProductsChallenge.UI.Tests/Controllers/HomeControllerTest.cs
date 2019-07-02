@@ -16,7 +16,7 @@ namespace MVCProductsChallenge.UI.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            ProductController controller = new ProductController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;

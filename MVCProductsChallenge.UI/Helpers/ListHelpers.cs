@@ -44,11 +44,13 @@ namespace MVCProductsChallenge.UI.Helpers
 
             if (productStatus.ToString() == ProductStatus.Inactive.ToString())
             {
-
+                productStatuses.Add(inactive);
+                productStatuses.Add(active);
             }
             else
             {
-
+                productStatuses.Add(active);
+                productStatuses.Add(inactive);
             }
 
             return productStatuses;

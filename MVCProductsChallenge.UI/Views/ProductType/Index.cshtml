@@ -1,0 +1,15 @@
+﻿<div class="row mb-5">
+    <div class="col-12">
+        <button type="button" id="addProductTypeButton" class="btn btn-primary">
+            Add product type <span class="fa fa-plus"></span>
+        </button>
+    </div>
+</div>
+
+@*@Html.Partial("ProductTypesTable", (IList<ProductType>)ViewBag.ProductTypes)*@
+
+@*@Html.Partial("CreateProductType", new Product())*@
+
+@section scripts{
+    <script src="~/Scripts/app/product-type/index.js"></script>
+}

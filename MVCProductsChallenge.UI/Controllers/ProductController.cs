@@ -6,11 +6,11 @@ using System.Web.Mvc;
 
 namespace MVCProductsChallenge.UI.Controllers
 {
-    public class HomeController : BaseController
+    public class ProductController : Controller
     {
         private readonly IProductService _productService;
 
-        public HomeController()
+        public ProductController()
         {
             _productService = new ProductService();
         }
