@@ -20,6 +20,11 @@ namespace MVCProductsChallenge.UI.Controllers
         {
             ViewBag.Title = "Product types";
 
+            ViewBag.ProductTypes = _productTypeService
+                .List()
+                .OrderBy(x => x.Name)
+                .ToList();
+
             return View();
         }
     }

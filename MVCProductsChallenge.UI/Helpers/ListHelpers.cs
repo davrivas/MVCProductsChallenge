@@ -11,16 +11,29 @@ namespace MVCProductsChallenge.UI.Helpers
     {
         public static IList<SelectListItem> GetProductTypes(int productTypeId = 0)
         {
-            var productTypes = new ProductTypeService()
+            var productTypes = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = "Select product type",
+                    Value = "0",
+                    Selected = productTypeId == 0
+                }
+            };
+
+            var productTypesRange = new ProductTypeService()
                 .List()
-                .OrderBy(x => x.ProductTypeName)
+                .OrderBy(x => x.Name)
                 .Select(x => new SelectListItem
                 {
-                    Text = x.ProductTypeName,
+                    Text = x.Name,
                     Value = x.Id.ToString(),
                     Selected = productTypeId == x.Id
                 })
                 .ToList();
+
+            productTypes.AddRange(productTypesRange);
+
             return productTypes;
         }
 

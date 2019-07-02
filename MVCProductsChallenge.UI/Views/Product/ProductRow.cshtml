@@ -4,9 +4,9 @@
 }
 
 <tr>
-    <td>@Model.Identifier</td>
+    <th scope="row">@Model.Identifier</th>
     <td>@Model.Description</td>
-    <td>@Model.ProductType.ProductTypeName</td>
+    <td>@Model.ProductType.Name</td>
     <td>@Model.ProductStatus.ToString()</td>
     <td>
         <button type="button" class="btn btn-warning update" title="Edit" data-url="@editUrl">
