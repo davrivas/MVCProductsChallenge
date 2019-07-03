@@ -1,5 +1,7 @@
 ﻿using MVCProductsChallenge.Model.Entities;
 using MVCProductsChallenge.Services;
+using MVCProductsChallenge.UI.Helpers;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -56,13 +58,22 @@ namespace MVCProductsChallenge.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitCreateProduct([Bind(Include = "Description,Price,ProductTypeId")] Product product)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _productService.Create(product);
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    _productService.Create(product);
+                    TempData["Message"] = MessageHelpers.GetSuccessMessage("Product added successfully");
+                    return RedirectToAction("Index");
+                }
 
-            return View("CreateProduct", product);
+                return View("CreateProduct", product);
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = MessageHelpers.GetExceptionMessage(ex);
+                return View("CreateProduct", product);
+            }
         }
 
         public ActionResult EditProduct(int productId)
@@ -77,14 +88,23 @@ namespace MVCProductsChallenge.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitEditProduct([Bind(Include = "Id,Identifier,CreationDate,Description,Price,ProductTypeId,ProductStatus")] Product product)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var oldProduct = _productService.Get(product.Id);
-                _productService.Update(oldProduct, product);
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    var oldProduct = _productService.Get(product.Id);
+                    _productService.Update(oldProduct, product);
+                    TempData["Message"] = MessageHelpers.GetSuccessMessage("Product edited successfully");
+                    return RedirectToAction("Index");
+                }
 
-            return View("EditProduct", product);
+                return View("EditProduct", product);
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = MessageHelpers.GetExceptionMessage(ex);
+                return View("EditProduct", product);
+            }
         }
     }
 }

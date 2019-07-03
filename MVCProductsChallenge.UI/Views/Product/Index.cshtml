@@ -1,4 +1,22 @@
-﻿<div class="row mb-5">
+﻿@{
+    var message = (Message)TempData["Message"];
+
+    string title = string.Empty;
+    string body = string.Empty;
+
+    if (message != null)
+    {
+        title = message.Title;
+        body = message.Body;
+    }
+}
+
+@if (message != null)
+{
+    <div id="messageInfo" data-title="@title" data-body="@body"></div>
+}
+
+<div class="row mb-5">
     <div class="col-md-6">
         <button type="button" id="addProductButton" class="btn btn-primary" data-url="@Url.Action("CreateProduct", "Product")">
             Add product <span class="fa fa-plus"></span>

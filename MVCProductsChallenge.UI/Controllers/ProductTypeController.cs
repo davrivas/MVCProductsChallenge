@@ -1,5 +1,6 @@
 ﻿using MVCProductsChallenge.Model.Entities;
 using MVCProductsChallenge.Services;
+using MVCProductsChallenge.UI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,24 +30,6 @@ namespace MVCProductsChallenge.UI.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult GetProducts(string identifier, string description)
-        //{
-        //    if (string.IsNullOrWhiteSpace(identifier))
-        //        identifier = null;
-
-        //    if (string.IsNullOrWhiteSpace(description))
-        //        description = null;
-
-        //    var products = _productService
-        //        .List()
-        //        .Include(x => x.ProductType)
-        //        .Where(x => (identifier == null || x.Identifier == identifier) && (description == null || x.Description.ToLower().Contains(description.ToLower())))
-        //        .ToList();
-
-        //    return PartialView("ProductsTable", products);
-        //}
-
         public ActionResult CreateProductType()
         {
             ViewBag.Title = "Create product type";
@@ -58,13 +41,22 @@ namespace MVCProductsChallenge.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitCreateProductType([Bind(Include = "Name")] ProductType productType)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _productTypeService.Create(productType);
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    _productTypeService.Create(productType);
+                    TempData["Message"] = MessageHelpers.GetSuccessMessage("Product type added successfully");
+                    return RedirectToAction("Index");
+                }
 
-            return View("CreateProductType", productType);
+                return View("CreateProductType", productType);
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = MessageHelpers.GetExceptionMessage(ex);
+                return View("CreateProductType", productType);
+            }
         }
 
         public ActionResult EditProductType(int productTypeId)
@@ -79,14 +71,23 @@ namespace MVCProductsChallenge.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitEditProductType([Bind(Include = "Id,Name")] ProductType productType)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var oldProductType = _productTypeService.Get(productType.Id);
-                _productTypeService.Update(oldProductType, productType);
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    var oldProductType = _productTypeService.Get(productType.Id);
+                    _productTypeService.Update(oldProductType, productType);
+                    TempData["Message"] = MessageHelpers.GetSuccessMessage("Product type edited successfully");
+                    return RedirectToAction("Index");
+                }
 
-            return View("EditProductType", productType);
+                return View("EditProductType", productType);
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = MessageHelpers.GetExceptionMessage(ex);
+                return View("EditProductType", productType);
+            }
         }
     }
 }

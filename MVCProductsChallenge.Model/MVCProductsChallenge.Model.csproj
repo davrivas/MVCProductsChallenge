@@ -52,6 +52,7 @@
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Enums\ProductStatus.cs" />
     <Compile Include="Entities\ProductType.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

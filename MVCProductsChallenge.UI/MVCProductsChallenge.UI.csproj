@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\ListHelpers.cs" />
+    <Compile Include="Helpers\MessageHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\go-back.js" />
+    <Content Include="Scripts\app\message.js" />
     <Content Include="Scripts\app\nav-bar.js" />
     <Content Include="Scripts\app\product-type\index.js" />
     <Content Include="Scripts\app\product\index.js" />
