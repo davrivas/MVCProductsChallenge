@@ -1,4 +1,8 @@
-﻿$('#addProductTypeButton').click(function () {
+﻿$(document).ready(function () {
+    $('#productTypesTable').DataTable();
+});
+
+$('#addProductTypeButton').click(function () {
     var url = $('#addProductTypeButton').data('url');
     window.location = url;
 });

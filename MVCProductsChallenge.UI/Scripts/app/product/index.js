@@ -1,4 +1,9 @@
-﻿$('#addProductButton').click(function () {
+﻿$(document).ready(function () {
+    $('#productsTable').DataTable();
+    $('#productsTable_filter').hide();
+});
+
+$('#addProductButton').click(function () {
     var url = $('#addProductButton').data('url');
     window.location = url;
 });
