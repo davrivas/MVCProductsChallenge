@@ -20,13 +20,19 @@ namespace MVCProductsChallenge.UI
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/jquery.dataTables.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
                       "~/Scripts/toastr.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                      "~/Scripts/app/nav-bar.js",
+                      "~/Scripts/app/message.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/jquery.dataTables.min.css",
                       "~/Content/font-awesome.css",
                       "~/Content/toastr.css"));
         }
