@@ -6,7 +6,7 @@ namespace MVCProductsChallenge.Services.Generators
     {
         private const string CODE_CHARACTERS = "abcdefghijklmnopqrstuvwxyz1234567890";
         private static readonly int _charactersLength = CODE_CHARACTERS.Length;
-        private static readonly Random random = new Random();
+        private static readonly Random _random = new Random();
 
         public static string GenerateCode(int maxCharacters = 5)
         {
@@ -14,7 +14,7 @@ namespace MVCProductsChallenge.Services.Generators
 
             for (int i = 0; i < maxCharacters; i++)
             {
-                int index = random.Next(_charactersLength);
+                int index = _random.Next(_charactersLength);
                 code += CODE_CHARACTERS[index];
             }
 
