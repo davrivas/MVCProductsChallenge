@@ -1,6 +1,10 @@
-﻿$(document).ready(function () {
+﻿function setBootstrapTable() {
     $('#productsTable').DataTable();
     $('#productsTable_filter').hide();
+}
+
+$(document).ready(function () {
+    setBootstrapTable();
 });
 
 $('#addProductButton').click(function () {
@@ -8,7 +12,8 @@ $('#addProductButton').click(function () {
     window.location = url;
 });
 
-$('.update').click(function () {
+
+$(document).on('click', '.update', function () {
     var url = $(this).data('url');
     window.location = url;
 });
@@ -20,7 +25,11 @@ $('#searchButton').click(function () {
     var url = action + "?identifier=" + identifier + "&description=" + description;
 
     $.post(url, function (data) {
-        $('#productsTable').html('');
-        $('#productsTable').html(data);
+        $('#productsTable_wrapper').remove();
+
+        var $data = $(data);
+        $($data).insertAfter('#addSearch');
+
+        setBootstrapTable();
     });
 });
