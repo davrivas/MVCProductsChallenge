@@ -2,9 +2,7 @@
 using MVCProductsChallenge.Services;
 using MVCProductsChallenge.UI.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MVCProductsChallenge.UI.Controllers
@@ -20,8 +18,6 @@ namespace MVCProductsChallenge.UI.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Title = "Product types";
-
             ViewBag.ProductTypes = _productTypeService
                 .List()
                 .OrderBy(x => x.Name)
@@ -30,12 +26,7 @@ namespace MVCProductsChallenge.UI.Controllers
             return View();
         }
 
-        public ActionResult CreateProductType()
-        {
-            ViewBag.Title = "Create product type";
-
-            return View(new ProductType());
-        }
+        public ActionResult CreateProductType() => View(new ProductType());
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -46,7 +37,7 @@ namespace MVCProductsChallenge.UI.Controllers
                 if (ModelState.IsValid)
                 {
                     _productTypeService.Create(productType);
-                    TempData["Message"] = MessageHelpers.GetSuccessMessage("Product type added successfully");
+                    TempData["Message"] = MessageHelpers.GetSuccessMessage($"Product type '{productType.Name}' was added successfully");
                     return RedirectToAction("Index");
                 }
 
@@ -61,8 +52,6 @@ namespace MVCProductsChallenge.UI.Controllers
 
         public ActionResult EditProductType(int productTypeId)
         {
-            ViewBag.Title = "Edit product type";
-
             var selectedProductType = _productTypeService.Get(productTypeId);
             return View("EditProductType", selectedProductType);
         }
@@ -77,7 +66,7 @@ namespace MVCProductsChallenge.UI.Controllers
                 {
                     var oldProductType = _productTypeService.Get(productType.Id);
                     _productTypeService.Update(oldProductType, productType);
-                    TempData["Message"] = MessageHelpers.GetSuccessMessage("Product type edited successfully");
+                    TempData["Message"] = MessageHelpers.GetSuccessMessage($"Product type '{productType.Name}' was edited successfully");
                     return RedirectToAction("Index");
                 }
 

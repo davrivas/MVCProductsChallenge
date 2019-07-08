@@ -237,15 +237,15 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Product\ProductRow.cshtml" />
+    <Content Include="Views\Product\_ProductRow.cshtml" />
     <Content Include="Views\Product\CreateProduct.cshtml" />
     <Content Include="Views\Product\EditProduct.cshtml" />
-    <Content Include="Views\Product\ProductsTable.cshtml" />
+    <Content Include="Views\Product\_ProductsTable.cshtml" />
     <Content Include="Views\ProductType\CreateProductType.cshtml" />
     <Content Include="Views\ProductType\EditProductType.cshtml" />
     <Content Include="Views\ProductType\Index.cshtml" />
-    <Content Include="Views\ProductType\ProductTypeRow.cshtml" />
-    <Content Include="Views\ProductType\ProductTypesTable.cshtml" />
+    <Content Include="Views\ProductType\_ProductTypeRow.cshtml" />
+    <Content Include="Views\ProductType\_ProductTypesTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

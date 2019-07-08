@@ -1,6 +1,8 @@
 ﻿@model Product
 
 @{
+    ViewBag.Title = $"Edit product ({Model.Description})";
+
     var message = (Message)TempData["Message"];
 
     string title = string.Empty;

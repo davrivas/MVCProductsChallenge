@@ -1,4 +1,6 @@
 ﻿@{
+    ViewBag.Title = "Products";
+
     var message = (Message)TempData["Message"];
 
     string title = string.Empty;
@@ -37,7 +39,7 @@
     </div>
 </div>
 
-@Html.Partial("ProductsTable", (IList<Product>)ViewBag.Products)
+@Html.Partial("_ProductsTable", (IList<Product>)ViewBag.Products)
 
 @section scripts{
     <script src="~/Scripts/app/product/index.js"></script>

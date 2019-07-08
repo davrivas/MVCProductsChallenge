@@ -24,8 +24,6 @@ namespace MVCProductsChallenge.UI.Controllers
                 .Include(x => x.ProductType)
                 .ToList();
 
-            ViewBag.Title = "Products";
-
             return View();
         }
 
@@ -44,15 +42,10 @@ namespace MVCProductsChallenge.UI.Controllers
                 .Where(x => (identifier == null || x.Identifier == identifier) && (description == null || x.Description.ToLower().Contains(description.ToLower())))
                 .ToList();
 
-            return PartialView("ProductsTable", products);
+            return PartialView("_ProductsTable", products);
         }
 
-        public ActionResult CreateProduct()
-        {
-            ViewBag.Title = "Create product";
-
-            return View(new Product());
-        }
+        public ActionResult CreateProduct() => View(new Product());
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -63,7 +56,7 @@ namespace MVCProductsChallenge.UI.Controllers
                 if (ModelState.IsValid)
                 {
                     _productService.Create(product);
-                    TempData["Message"] = MessageHelpers.GetSuccessMessage("Product added successfully");
+                    TempData["Message"] = MessageHelpers.GetSuccessMessage($"Product '{product.Description}' was added successfully");
                     return RedirectToAction("Index");
                 }
 
@@ -78,8 +71,6 @@ namespace MVCProductsChallenge.UI.Controllers
 
         public ActionResult EditProduct(int productId)
         {
-            ViewBag.Title = "Edit product";
-
             var selectedProduct = _productService.Get(productId);
             return View("EditProduct", selectedProduct);
         }
@@ -94,7 +85,7 @@ namespace MVCProductsChallenge.UI.Controllers
                 {
                     var oldProduct = _productService.Get(product.Id);
                     _productService.Update(oldProduct, product);
-                    TempData["Message"] = MessageHelpers.GetSuccessMessage("Product edited successfully");
+                    TempData["Message"] = MessageHelpers.GetSuccessMessage($"Product '{product.Description}' was edited successfully");
                     return RedirectToAction("Index");
                 }
 
