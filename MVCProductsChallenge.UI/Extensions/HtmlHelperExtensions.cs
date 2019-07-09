@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Web.Mvc;
 
-namespace MVCProductsChallenge.UI.Helpers
+namespace MVCProductsChallenge.UI.Extensions
 {
-    public static class HtmlHelpers
+    public static class HtmlHelperExtensions
     {
         public static MvcHtmlString CustomDropdownListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, IList<SelectListItem> list, object htmlAttributes = null)
         {
