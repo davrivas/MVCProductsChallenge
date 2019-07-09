@@ -25,6 +25,7 @@ $('#searchButton').click(function () {
     var url = action + "?identifier=" + identifier + "&description=" + description;
 
     $.post(url, function (data) {
+        $('#productsTable').remove();
         $('#productsTable_wrapper').remove();
 
         var $data = $(data);
