@@ -246,6 +246,7 @@
     <Content Include="Views\ProductType\Index.cshtml" />
     <Content Include="Views\ProductType\_ProductTypeRow.cshtml" />
     <Content Include="Views\ProductType\_ProductTypesTable.cshtml" />
+    <Content Include="Views\Shared\_MessageRenderer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

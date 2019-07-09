@@ -2,23 +2,9 @@
 
 @{
     ViewBag.Title = $"Edit product type ({Model.Name})";
-
-    var message = (Message)TempData["Message"];
-
-    string title = string.Empty;
-    string body = string.Empty;
-
-    if (message != null)
-    {
-        title = message.Title;
-        body = message.Body;
-    }
 }
 
-@if (message != null)
-{
-    <div id="messageInfo" data-title="@title" data-body="@body"></div>
-}
+@Html.Partial("_MessageRenderer")
 
 <div class="row mb-3">
     <button type="button" id="backButton" class="btn btn-primary" data-url="@Url.Action("Index", "ProductType")">
