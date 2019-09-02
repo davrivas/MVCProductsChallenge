@@ -11,3 +11,8 @@ $('.update').click(function () {
     var url = $(this).data('url');
     window.location = url;
 });
+
+$('.delete').click(function () {
+    var url = $(this).data('url');
+    window.location = url;
+});

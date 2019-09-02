@@ -2,6 +2,7 @@
 using MVCProductsChallenge.Services;
 using MVCProductsChallenge.UI.Helpers;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -50,9 +51,16 @@ namespace MVCProductsChallenge.UI.Controllers
             }
         }
 
-        public ActionResult EditProductType(int productTypeId)
+        public ActionResult EditProductType(int? productTypeId)
         {
-            var selectedProductType = _productTypeService.Get(productTypeId);
+            if (productTypeId == null)
+                return RedirectToAction("Index");
+
+            var selectedProductType = _productTypeService.Get((int)productTypeId);
+
+            if (selectedProductType == null)
+                return RedirectToAction("Index");
+
             return View("EditProductType", selectedProductType);
         }
 
@@ -76,6 +84,41 @@ namespace MVCProductsChallenge.UI.Controllers
             {
                 TempData["Message"] = MessageHelpers.GetExceptionMessage(ex);
                 return View("EditProductType", productType);
+            }
+        }
+
+        public ActionResult DeleteProductType(int? productTypeId)
+        {
+            if (productTypeId == null)
+                return RedirectToAction("Index");
+
+            var selectedProductType = _productTypeService
+                .List()
+                .Where(x => x.Id == productTypeId)
+                .Include(x => x.Products)
+                .FirstOrDefault();
+
+            if (selectedProductType == null)
+                return RedirectToAction("Index");
+
+            return View("DeleteProductType", selectedProductType);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubmitDeleteProductType(ProductType productType)
+        {
+            try
+            {
+                //check
+                _productTypeService.Delete(productType);
+                TempData["Message"] = MessageHelpers.GetSuccessMessage($"Product name '{productType.Name}' was deleted successfully");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = MessageHelpers.GetExceptionMessage(ex);
+                return View("DeleteProductType", productType);
             }
         }
     }

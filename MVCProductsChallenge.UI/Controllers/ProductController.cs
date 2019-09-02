@@ -75,6 +75,10 @@ namespace MVCProductsChallenge.UI.Controllers
                 return RedirectToAction("Index");
 
             var selectedProduct = _productService.Get((int)productId);
+
+            if (selectedProduct == null)
+                return RedirectToAction("Index");
+
             return View("EditProduct", selectedProduct);
         }
 
@@ -107,6 +111,10 @@ namespace MVCProductsChallenge.UI.Controllers
                 return RedirectToAction("Index");
 
             var selectedProduct = _productService.Get((int)productId);
+
+            if (selectedProduct == null)
+                return RedirectToAction("Index");
+
             return View("DeleteProduct", selectedProduct);
         }
 

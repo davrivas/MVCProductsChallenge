@@ -247,6 +247,7 @@
     <Content Include="Views\ProductType\_ProductTypesTable.cshtml" />
     <Content Include="Views\Shared\_MessageRenderer.cshtml" />
     <Content Include="Views\Product\DeleteProduct.cshtml" />
+    <Content Include="Views\ProductType\DeleteProductType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

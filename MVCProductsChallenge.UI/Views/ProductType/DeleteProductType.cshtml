@@ -1,0 +1,37 @@
+﻿@model ProductType
+@{
+    ViewBag.Title = $"Delete product type ({Model.Name})";
+}
+
+@Html.Partial("_MessageRenderer")
+
+@if (Model.Products.Count == 0)
+{
+    <h2>Do you want to delete this product?</h2>
+
+    using (var form = Html.BeginForm("SubmitDeleteProductType", "ProductType", FormMethod.Post))
+    {
+        Html.AntiForgeryToken();
+        Html.HiddenFor(model => model.Id);
+        Html.HiddenFor(model => model.Name);
+
+        <div class="row">
+            <input type="submit" class="btn btn-danger mr-1" value="Delete product type" />
+            <button type="button" id="backButton" class="btn btn-primary ml-1" data-url="@Url.Action("Index", "ProductType")">
+                Go back
+            </button>
+        </div>
+    }
+}
+else
+{
+    <p>You cannot delete this product type because it has products related. Please delete all @Model.Name products to delete this product type.</p>
+
+    <button type="button" id="backButton" class="btn btn-primary" data-url="@Url.Action("Index", "ProductType")">
+        Go back
+    </button>
+}
+
+@section scripts{
+    <script src="~/Scripts/app/go-back.js"></script>
+}
