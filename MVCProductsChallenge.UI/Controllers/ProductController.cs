@@ -69,9 +69,12 @@ namespace MVCProductsChallenge.UI.Controllers
             }
         }
 
-        public ActionResult EditProduct(int productId)
+        public ActionResult EditProduct(int? productId)
         {
-            var selectedProduct = _productService.Get(productId);
+            if (productId == null)
+                return RedirectToAction("Index");
+
+            var selectedProduct = _productService.Get((int)productId);
             return View("EditProduct", selectedProduct);
         }
 
@@ -95,6 +98,32 @@ namespace MVCProductsChallenge.UI.Controllers
             {
                 TempData["Message"] = MessageHelpers.GetExceptionMessage(ex);
                 return View("EditProduct", product);
+            }
+        }
+
+        public ActionResult DeleteProduct(int? productId)
+        {
+            if (productId == null)
+                return RedirectToAction("Index");
+
+            var selectedProduct = _productService.Get((int)productId);
+            return View("DeleteProduct", selectedProduct);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubmitDeleteProduct( Product product)
+        {
+            try
+            {
+                _productService.Delete(product);
+                TempData["Message"] = MessageHelpers.GetSuccessMessage($"Product '{product.Description}' was deleted successfully");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = MessageHelpers.GetExceptionMessage(ex);
+                return View("DeleteProduct", product);
             }
         }
     }

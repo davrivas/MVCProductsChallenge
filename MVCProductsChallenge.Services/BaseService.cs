@@ -35,7 +35,7 @@ namespace MVCProductsChallenge.Services
 
         public virtual void Delete(T entity)
         {
-            _dbContext.Set<T>().Remove(entity);
+            _dbContext.Entry(entity).State = EntityState.Deleted;
             _dbContext.SaveChanges();
         }
 

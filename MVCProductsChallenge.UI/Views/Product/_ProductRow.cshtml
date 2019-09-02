@@ -1,6 +1,7 @@
 ﻿@model Product
 @{
-    string editUrl = @Url.Action("EditProduct", "Product") + "?productId=" + Model.Id.ToString();
+    string editUrl = @Url.Action("EditProduct", "Product") + "?productId=" + Model.Id.ToString(),
+        deleteUrl = @Url.Action("DeleteProduct", "Product") + "?productId=" + Model.Id.ToString();
 }
 
 <tr>
@@ -11,6 +12,11 @@
     <td>
         <button type="button" class="btn btn-warning update" title="Edit" data-url="@editUrl">
             <span class="fa fa-pencil"></span>
+        </button>
+    </td>
+    <td>
+        <button type="button" class="btn btn-danger delete" title="Delete" data-url="@deleteUrl">
+            <span class="fa fa-trash"></span>
         </button>
     </td>
 </tr>

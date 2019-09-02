@@ -18,6 +18,11 @@ $(document).on('click', '.update', function () {
     window.location = url;
 });
 
+$(document).on('click', '.delete', function () {
+    var url = $(this).data('url');
+    window.location = url;
+});
+
 $('#searchButton').click(function () {
     var identifier = $('#identifier').val();
     var description = $('#description').val();
